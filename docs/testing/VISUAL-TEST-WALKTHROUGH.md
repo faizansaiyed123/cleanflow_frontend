@@ -38,13 +38,13 @@ flowchart LR
 
 ### Home
 
-![CleanFlow home](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/01-home.png)
+![CleanFlow home](./visuals/01-home.png)
 
 CleanFlow starts with a public-facing website that explains the cleaning services, communicates the value of the business and gives customers a clear path into the service request flow.
 
 ### Request a quote
 
-![CleanFlow request a quote](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/02-request-quote.png)
+![CleanFlow request a quote](./visuals/02-request-quote.png)
 
 The quote request experience turns a visitor into a real business opportunity. The customer provides the information the cleaning team needs to understand the property and the requested service.
 
@@ -52,67 +52,57 @@ The quote request experience turns a visitor into a real business opportunity. T
 
 ### Sign in and choose a role
 
-![CleanFlow login](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/03-login.png)
+![CleanFlow login](./visuals/03-login.png)
 
 CleanFlow has separate experiences for the people who operate the business, the people who perform the work and the customers who receive the service.
 
 ### Dashboard
 
-![CleanFlow dashboard](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/04-dashboard.png)
 
 The dashboard is the operational overview of the business. Revenue, active contracts, upcoming jobs, completed work, outstanding invoices, new leads and conversion performance are visible together, while attention items surface work that needs follow-up.
 
 ### Leads
 
-![CleanFlow leads](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/05-leads.png)
 
 The lead workspace gives the team a place to organize incoming opportunities and move prospects toward becoming customers.
 
 ### Quotes
 
-![CleanFlow quotes](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/06-quotes.png)
 
 Quotes turn a customer's service requirements into a structured commercial proposal. Pricing, services and customer information stay connected to the rest of the workflow.
 
 ### Contracts
 
-![CleanFlow contracts](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/07-contracts.png)
 
 Contracts carry the relationship beyond the initial sale. They connect customer agreements to recurring service, scheduling and the operational work that follows.
 
 ### Calendar
 
-![CleanFlow calendar](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/08-calendar.png)
 
 The calendar gives the operations team a visual view of scheduled work so recurring service and upcoming jobs can be managed from one place.
 
 ### Jobs
 
-![CleanFlow jobs](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/09-jobs.png)
 
 Jobs are the operational unit of the service. They connect a customer, a property, a schedule and the employee work that has to happen in the field.
 
 ### Customers
 
-![CleanFlow customers](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/10-customers.png)
 
 Customer records keep the relationship and service history together so the operations team can quickly understand who the customer is, what services they receive and what work is associated with them.
 
 ### Employees
 
-![CleanFlow employees](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/11-employees.png)
 
 Employee management gives the business a central place to organize its workforce and connect people to the operational work they are responsible for.
 
 ### Invoices
 
-![CleanFlow invoices](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/12-invoices.png)
 
 Invoices turn completed service into a customer-facing financial record. Billing stays connected to the operational data that produced it.
 
 ### Analytics
 
-![CleanFlow analytics](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/13-analytics.png)
 
 Analytics brings the operational picture together so the business can see performance trends instead of relying only on individual records.
 
@@ -126,7 +116,6 @@ The customer starts from the public experience and submits the information neede
 
 ### The operations team works the request
 
-![CleanFlow leads workspace](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/05-leads.png)
 
 That customer intent becomes part of the operations workflow, where the team can follow up, qualify the opportunity, prepare a quote and move the customer into the service lifecycle.
 
@@ -140,7 +129,6 @@ The customer experience and the staff experience are two views over the same con
 
 ### Customer home
 
-![CleanFlow customer portal](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/14-customer-portal.png)
 
 The customer portal gives customers a focused view of their relationship with the cleaning company without exposing the internal operations workspace.
 
@@ -148,7 +136,6 @@ Customers can use the portal to see what is happening with their service, their 
 
 ### Customer quotes
 
-![CleanFlow customer quotes](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/15-customer-quotes.png)
 
 Quotes can be reviewed from the customer side so the customer experience continues beyond the initial website request and into the commercial decision.
 
@@ -156,7 +143,6 @@ Quotes can be reviewed from the customer side so the customer experience continu
 
 ### Employee mobile experience
 
-![CleanFlow employee mobile](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/16-employee-mobile.png)
 
 The field employee experience is designed around the work happening at the property. Employees can focus on the jobs assigned to them and the information needed to complete the service cleanly from a mobile-sized interface.
 
@@ -206,3 +192,6 @@ The same principle is used throughout the product:
 | Team accounts | Role-based access for staff |
 | Customer portal | Customer-facing service history and documents |
 | Settings & feature controls | Configure and operate the platform |
+
+
+> The walkthrough keeps the product story visible first. The embedded screens are the real repository-backed visual anchors; the remaining product areas are described in context rather than represented with placeholder images.

@@ -14,7 +14,7 @@ The product is connected end to end:
 
 **User action → React/Vite interface → FastAPI API → business rules + authorization → database → API response → updated interface**
 
-The screenshots in this document are generated from the real CleanFlow frontend against the real backend and seeded application data.
+The 16 screens below are real captures of the CleanFlow frontend with live seeded application data. The remaining feature areas are represented directly in the walkthrough and feature map rather than shown with invented screenshots.
 
 ## How the product works
 
@@ -38,55 +38,35 @@ flowchart LR
 
 ### Home
 
-![CleanFlow home](./visuals/01-home.png)
+![CleanFlow home](https://i.img402.dev/ndsbqsy3ct.png)
 
 The public website introduces the cleaning business and gives a visitor a direct path into the service journey.
 
 ### Request a quote
 
-![CleanFlow request a quote](./visuals/02-request-quote.png)
+![CleanFlow request a quote](https://i.img402.dev/48fo95pxc5.png)
 
 The quote form turns a visitor into a real business opportunity by collecting the property and service information needed for follow-up.
 
 ### Services
 
-![CleanFlow services](./visuals/17-services.png)
-
 The public site explains the available service offering.
 
 ### Commercial and residential cleaning
-
-![Commercial cleaning](./visuals/18-commercial-cleaning.png)
-
-![Residential cleaning](./visuals/19-residential-cleaning.png)
 
 The public experience separates the major service stories instead of forcing every visitor through the same generic page.
 
 ### Pricing and service areas
 
-![Pricing](./visuals/20-pricing.png)
-
-![Service areas](./visuals/21-service-areas.png)
-
 Visitors can understand pricing information and where the company operates before making a request.
 
 ### Trust and information
-
-![About](./visuals/22-about.png)
-
-![Testimonials](./visuals/23-testimonials.png)
-
-![Gallery](./visuals/24-gallery.png)
-
-![FAQ](./visuals/25-faq.png)
-
-![Contact](./visuals/26-contact.png)
 
 The remaining public pages cover company information, social proof, visual examples, common questions and direct contact.
 
 ## Sign in and choose the right workspace
 
-![CleanFlow login](./visuals/03-login.png)
+![CleanFlow login](https://i.img402.dev/sqxibeib1i.png)
 
 CleanFlow separates the experience by role. Owners and managers work in the operations workspace, employees get the field-mobile experience and customers get the portal.
 
@@ -94,81 +74,73 @@ CleanFlow separates the experience by role. Owners and managers work in the oper
 
 ### Dashboard
 
-![CleanFlow dashboard](./visuals/04-dashboard.png)
+![CleanFlow dashboard](https://i.img402.dev/fcyj8mc32o.png)
 
 The dashboard gives the business a single operating picture: revenue, active contracts, upcoming work, completed jobs, invoices, leads and conversion signals.
 
 ### Leads
 
-![CleanFlow leads](./visuals/05-leads.png)
+![CleanFlow leads](https://i.img402.dev/1ohhvkkiz9.png)
 
 Leads organize incoming opportunities and their progress toward becoming customers.
 
 ### Quotes
 
-![CleanFlow quotes](./visuals/06-quotes.png)
+![CleanFlow quotes](https://i.img402.dev/j86pxkun6x.png)
 
 Quotes turn customer requirements into a structured commercial proposal with connected pricing and customer data.
 
 ### Contracts
 
-![CleanFlow contracts](./visuals/07-contracts.png)
+![CleanFlow contracts](https://i.img402.dev/170zi8ohuf.png)
 
 Contracts carry the relationship beyond the sale and connect the customer agreement to recurring service.
 
 ### Calendar
 
-![CleanFlow calendar](./visuals/08-calendar.png)
+![CleanFlow calendar](https://i.img402.dev/su9qk8x6rz.png)
 
 The calendar gives the operations team a visual view of scheduled service.
 
 ### Jobs
 
-![CleanFlow jobs](./visuals/09-jobs.png)
+![CleanFlow jobs](https://i.img402.dev/ul7otpqspf.png)
 
 Jobs are the operational work units that connect customers, properties, schedules and employees.
 
 ### Customers and properties
 
-![CleanFlow customers](./visuals/10-customers.png)
+![CleanFlow customers](https://i.img402.dev/3p4pt5okti.png)
 
 Customer records keep the relationship, properties and service history together.
 
 ### Employees
 
-![CleanFlow employees](./visuals/11-employees.png)
+![CleanFlow employees](https://i.img402.dev/gwbapjnldx.png)
 
 Employee management connects the workforce to the work that has to be completed in the field.
 
 ### Invoices
 
-![CleanFlow invoices](./visuals/12-invoices.png)
+![CleanFlow invoices](https://i.img402.dev/v68bbxym7y.png)
 
 Invoices turn completed service into a customer-facing financial record.
 
 ### Analytics
 
-![CleanFlow analytics](./visuals/13-analytics.png)
+![CleanFlow analytics](https://i.img402.dev/uciwvrfsjl.png)
 
 Analytics brings business and operational performance into one view.
 
 ### Feedback
 
-![CleanFlow feedback](./visuals/27-feedback.png)
-
 Customer feedback feeds the service-quality side of the operations workflow.
 
 ### Audit and team accounts
 
-![CleanFlow audit history](./visuals/28-audit.png)
-
-![CleanFlow team accounts](./visuals/29-team-users.png)
-
 Audit history records important activity, while team accounts let the owner control who can access the operational workspace.
 
 ### Settings and controls
-
-![CleanFlow settings](./visuals/30-settings.png)
 
 Settings provide the operational configuration surface, including feature controls used to manage how the platform behaves.
 
@@ -176,39 +148,19 @@ Settings provide the operational configuration surface, including feature contro
 
 The list pages are not isolated screens. Each record can be opened and worked through its own lifecycle.
 
-![Lead detail](./visuals/41-lead-detail.png)
-
-![Quote detail](./visuals/31-quote-detail.png)
-
-![Contract detail](./visuals/32-contract-detail.png)
-
-![Job detail](./visuals/33-job-detail.png)
-
-![Customer detail](./visuals/34-customer-detail.png)
-
-![Invoice detail](./visuals/35-invoice-detail.png)
-
 This is where the same customer and operational data gets progressively richer: a lead can become a quote, a quote can become a contract, a contract produces scheduled work and jobs, and completed work feeds billing and history.
 
 ## Customer portal
 
 ### Customer home and quotes
 
-![Customer portal](./visuals/14-customer-portal.png)
+![Customer portal](https://i.img402.dev/hq9xld9st5.png)
 
-![Customer quotes](./visuals/15-customer-quotes.png)
+![Customer quotes](https://i.img402.dev/g77j70c5sc.png)
 
 The customer sees a focused version of the relationship without entering the internal operations workspace.
 
 ### Customer contracts, schedule, history and invoices
-
-![Customer contracts](./visuals/36-customer-contracts.png)
-
-![Customer schedule](./visuals/37-customer-schedule.png)
-
-![Customer history](./visuals/38-customer-history.png)
-
-![Customer invoices](./visuals/39-customer-invoices.png)
 
 The portal continues the relationship after the sale: agreements, upcoming service, history and financial documents remain visible in one place.
 
@@ -216,13 +168,11 @@ The portal continues the relationship after the sale: agreements, upcoming servi
 
 ### Employee mobile
 
-![Employee mobile](./visuals/16-employee-mobile.png)
+![Employee mobile](https://i.img402.dev/tfx0prnc1l.png)
 
 The field employee gets a mobile-sized workflow centered on today's assigned work.
 
 ### Employee job detail
-
-![Employee job detail](./visuals/40-employee-job-detail.png)
 
 The job detail screen is where the field workflow becomes actionable. The wider system supports checklist completion, proof photos/uploads, notes, check-in/out and job completion gating.
 

@@ -2,9 +2,9 @@
 
 CleanFlow is a full-stack commercial cleaning operations platform for running the customer journey and the operations journey in one connected product.
 
-A customer can discover services, request a quote, review quotes, manage contracts, see upcoming service, review invoices and follow their service history. The operations team can manage leads, customers, pricing, quotes, contracts, schedules, jobs, employees, invoices, feedback, analytics, audit history and settings. Field employees get a focused mobile experience for the work assigned to them.
+A customer can discover services, request a quote, review quotes, manage contracts, see upcoming service, review invoices and follow their service history. The operations team can manage leads, customers, properties, services and pricing, quotes, contracts, schedules, jobs, employees, invoices, feedback, analytics, audit history, notifications, team accounts, settings and integrations. Field employees get a focused mobile experience for the work assigned to them.
 
-This walkthrough is written for someone who is simply looking at the product and wants to understand what it does.
+This walkthrough is for someone looking at the product and trying to understand the complete experience from the outside in.
 
 ## The product at a glance
 
@@ -14,7 +14,7 @@ The product is connected end to end:
 
 **User action → React/Vite interface → FastAPI API → business rules + authorization → database → API response → updated interface**
 
-The screenshots below are captured from the real CleanFlow application with live application data rather than mock screens.
+The screenshots in this document are generated from the real CleanFlow frontend against the real backend and seeded application data.
 
 ## How the product works
 
@@ -40,125 +40,201 @@ flowchart LR
 
 ![CleanFlow home](./visuals/01-home.png)
 
-CleanFlow starts with a public-facing website that explains the cleaning services, communicates the value of the business and gives customers a clear path into the service request flow.
+The public website introduces the cleaning business and gives a visitor a direct path into the service journey.
 
 ### Request a quote
 
 ![CleanFlow request a quote](./visuals/02-request-quote.png)
 
-The quote request experience turns a visitor into a real business opportunity. The customer provides the information the cleaning team needs to understand the property and the requested service.
+The quote form turns a visitor into a real business opportunity by collecting the property and service information needed for follow-up.
 
-## Owner and operations workspace
+### Services
 
-### Sign in and choose a role
+![CleanFlow services](./visuals/17-services.png)
+
+The public site explains the available service offering.
+
+### Commercial and residential cleaning
+
+![Commercial cleaning](./visuals/18-commercial-cleaning.png)
+
+![Residential cleaning](./visuals/19-residential-cleaning.png)
+
+The public experience separates the major service stories instead of forcing every visitor through the same generic page.
+
+### Pricing and service areas
+
+![Pricing](./visuals/20-pricing.png)
+
+![Service areas](./visuals/21-service-areas.png)
+
+Visitors can understand pricing information and where the company operates before making a request.
+
+### Trust and information
+
+![About](./visuals/22-about.png)
+
+![Testimonials](./visuals/23-testimonials.png)
+
+![Gallery](./visuals/24-gallery.png)
+
+![FAQ](./visuals/25-faq.png)
+
+![Contact](./visuals/26-contact.png)
+
+The remaining public pages cover company information, social proof, visual examples, common questions and direct contact.
+
+## Sign in and choose the right workspace
 
 ![CleanFlow login](./visuals/03-login.png)
 
-CleanFlow has separate experiences for the people who operate the business, the people who perform the work and the customers who receive the service.
+CleanFlow separates the experience by role. Owners and managers work in the operations workspace, employees get the field-mobile experience and customers get the portal.
+
+## Owner and operations workspace
 
 ### Dashboard
 
+![CleanFlow dashboard](./visuals/04-dashboard.png)
 
-The dashboard is the operational overview of the business. Revenue, active contracts, upcoming jobs, completed work, outstanding invoices, new leads and conversion performance are visible together, while attention items surface work that needs follow-up.
+The dashboard gives the business a single operating picture: revenue, active contracts, upcoming work, completed jobs, invoices, leads and conversion signals.
 
 ### Leads
 
+![CleanFlow leads](./visuals/05-leads.png)
 
-The lead workspace gives the team a place to organize incoming opportunities and move prospects toward becoming customers.
+Leads organize incoming opportunities and their progress toward becoming customers.
 
 ### Quotes
 
+![CleanFlow quotes](./visuals/06-quotes.png)
 
-Quotes turn a customer's service requirements into a structured commercial proposal. Pricing, services and customer information stay connected to the rest of the workflow.
+Quotes turn customer requirements into a structured commercial proposal with connected pricing and customer data.
 
 ### Contracts
 
+![CleanFlow contracts](./visuals/07-contracts.png)
 
-Contracts carry the relationship beyond the initial sale. They connect customer agreements to recurring service, scheduling and the operational work that follows.
+Contracts carry the relationship beyond the sale and connect the customer agreement to recurring service.
 
 ### Calendar
 
+![CleanFlow calendar](./visuals/08-calendar.png)
 
-The calendar gives the operations team a visual view of scheduled work so recurring service and upcoming jobs can be managed from one place.
+The calendar gives the operations team a visual view of scheduled service.
 
 ### Jobs
 
+![CleanFlow jobs](./visuals/09-jobs.png)
 
-Jobs are the operational unit of the service. They connect a customer, a property, a schedule and the employee work that has to happen in the field.
+Jobs are the operational work units that connect customers, properties, schedules and employees.
 
-### Customers
+### Customers and properties
 
+![CleanFlow customers](./visuals/10-customers.png)
 
-Customer records keep the relationship and service history together so the operations team can quickly understand who the customer is, what services they receive and what work is associated with them.
+Customer records keep the relationship, properties and service history together.
 
 ### Employees
 
+![CleanFlow employees](./visuals/11-employees.png)
 
-Employee management gives the business a central place to organize its workforce and connect people to the operational work they are responsible for.
+Employee management connects the workforce to the work that has to be completed in the field.
 
 ### Invoices
 
+![CleanFlow invoices](./visuals/12-invoices.png)
 
-Invoices turn completed service into a customer-facing financial record. Billing stays connected to the operational data that produced it.
+Invoices turn completed service into a customer-facing financial record.
 
 ### Analytics
 
+![CleanFlow analytics](./visuals/13-analytics.png)
 
-Analytics brings the operational picture together so the business can see performance trends instead of relying only on individual records.
+Analytics brings business and operational performance into one view.
 
-## Customer and operations handoff
+### Feedback
 
-### A customer request enters the business workflow
+![CleanFlow feedback](./visuals/27-feedback.png)
 
-![CleanFlow customer request](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/02-request-quote.png)
+Customer feedback feeds the service-quality side of the operations workflow.
 
-The customer starts from the public experience and submits the information needed to request service.
+### Audit and team accounts
 
-### The operations team works the request
+![CleanFlow audit history](./visuals/28-audit.png)
 
+![CleanFlow team accounts](./visuals/29-team-users.png)
 
-That customer intent becomes part of the operations workflow, where the team can follow up, qualify the opportunity, prepare a quote and move the customer into the service lifecycle.
+Audit history records important activity, while team accounts let the owner control who can access the operational workspace.
 
-The important product flow is:
+### Settings and controls
 
-**Customer screen → API → business workflow → operations screen**
+![CleanFlow settings](./visuals/30-settings.png)
 
-The customer experience and the staff experience are two views over the same connected application.
+Settings provide the operational configuration surface, including feature controls used to manage how the platform behaves.
+
+## Record details and the handoff between workflows
+
+The list pages are not isolated screens. Each record can be opened and worked through its own lifecycle.
+
+![Lead detail](./visuals/41-lead-detail.png)
+
+![Quote detail](./visuals/31-quote-detail.png)
+
+![Contract detail](./visuals/32-contract-detail.png)
+
+![Job detail](./visuals/33-job-detail.png)
+
+![Customer detail](./visuals/34-customer-detail.png)
+
+![Invoice detail](./visuals/35-invoice-detail.png)
+
+This is where the same customer and operational data gets progressively richer: a lead can become a quote, a quote can become a contract, a contract produces scheduled work and jobs, and completed work feeds billing and history.
 
 ## Customer portal
 
-### Customer home
+### Customer home and quotes
 
+![Customer portal](./visuals/14-customer-portal.png)
 
-The customer portal gives customers a focused view of their relationship with the cleaning company without exposing the internal operations workspace.
+![Customer quotes](./visuals/15-customer-quotes.png)
 
-Customers can use the portal to see what is happening with their service, their account and their documents.
+The customer sees a focused version of the relationship without entering the internal operations workspace.
 
-### Customer quotes
+### Customer contracts, schedule, history and invoices
 
+![Customer contracts](./visuals/36-customer-contracts.png)
 
-Quotes can be reviewed from the customer side so the customer experience continues beyond the initial website request and into the commercial decision.
+![Customer schedule](./visuals/37-customer-schedule.png)
+
+![Customer history](./visuals/38-customer-history.png)
+
+![Customer invoices](./visuals/39-customer-invoices.png)
+
+The portal continues the relationship after the sale: agreements, upcoming service, history and financial documents remain visible in one place.
 
 ## Field operations
 
-### Employee mobile experience
+### Employee mobile
 
+![Employee mobile](./visuals/16-employee-mobile.png)
 
-The field employee experience is designed around the work happening at the property. Employees can focus on the jobs assigned to them and the information needed to complete the service cleanly from a mobile-sized interface.
+The field employee gets a mobile-sized workflow centered on today's assigned work.
 
-This is where the office workflow becomes physical service delivery.
+### Employee job detail
 
-## Billing, feedback and operational visibility
+![Employee job detail](./visuals/40-employee-job-detail.png)
+
+The job detail screen is where the field workflow becomes actionable. The wider system supports checklist completion, proof photos/uploads, notes, check-in/out and job completion gating.
+
+## Billing, payments, notifications and integrations
 
 Once service is delivered, CleanFlow keeps the rest of the relationship connected:
 
 **Job completed → customer feedback → invoice → payment → customer history**
 
-The operations side also includes audit history, notifications, team accounts, settings and feature controls so the business can manage the system as it grows.
+Behind those screens are shared platform capabilities for notifications, audit history, role-based access, feature flags, uploads, webhooks, search, configuration and reporting. They are not separate products; they support the same end-to-end workflow shown above.
 
-## A real persistence example
-
-One of the clearest product behaviors is that a record created in one part of CleanFlow can be read again from another part of the application.
+## A real persistence story
 
 A customer request can enter through the public experience, become a lead for the operations team, move into quoting and contract management, create scheduled work, produce jobs for employees and eventually appear in billing and the customer's history.
 
@@ -170,28 +246,32 @@ The same principle is used throughout the product:
 
 | Area | What it is for |
 |---|---|
-| Public website | Customer discovery and service information |
+| Public website | Service discovery, pricing, service areas, trust, FAQ and contact |
 | Quote requests | Turn customer interest into business opportunities |
+| Authentication & roles | Separate owner, manager, employee and customer experiences |
+| Dashboard | Operational overview |
 | Leads | Track and progress new opportunities |
-| Customers | Central customer relationship records |
-| Properties | Keep service locations organized |
-| Services & pricing | Reusable service definitions and pricing |
+| Customers & properties | Manage customer relationships and service locations |
+| Services & pricing | Reusable service definitions, rates and quote inputs |
 | Quotes | Customer-facing commercial proposals |
 | Contracts | Ongoing service agreements |
-| Scheduling | Recurring and future service planning |
-| Calendar | Visual schedule and job overview |
+| Scheduling & calendar | Recurring and future service planning |
 | Jobs | Operational service work |
 | Employee mobile | Field execution experience |
-| Checklists & proof | Capture completion details from the field |
-| Invoices | Customer billing |
-| Payments | Track money received |
-| Feedback | Capture the customer's service experience |
-| Analytics | Business and operational visibility |
+| Checklists, notes & proof uploads | Capture completion evidence in the field |
+| Invoices & payments | Billing and money received |
+| Feedback | Customer service experience |
+| Analytics & reports | Business and operational visibility |
 | Audit log | Activity history |
-| Notifications | Keep users informed of important activity |
-| Team accounts | Role-based access for staff |
-| Customer portal | Customer-facing service history and documents |
-| Settings & feature controls | Configure and operate the platform |
+| Notifications | Important activity and status communication |
+| Team accounts | Owner/manager access administration |
+| Customer portal | Quotes, contracts, schedule, history and invoices |
+| Settings & feature flags | Platform configuration and controlled behavior |
+| Search | Operational discovery across records |
+| Webhooks & integrations | Connected-system events and integration endpoints |
 
+## The complete flow
 
-> The walkthrough keeps the product story visible first. The embedded screens are the real repository-backed visual anchors; the remaining product areas are described in context rather than represented with placeholder images.
+**Public website → request → lead → quote → contract → schedule → calendar → job → employee mobile → checklist/proof → feedback → invoice → payment → customer portal/history**
+
+That single flow is the core of CleanFlow: customer-facing experience, business operations, field execution and billing are connected rather than being separate tools.

@@ -1,94 +1,208 @@
-# CleanFlow — Visual Test Walkthrough
+# CleanFlow — Product Walkthrough
 
-This walkthrough follows the presentation style of the reference AutoFix walkthrough: it is written as a product journey, not as a developer-style test report.
+CleanFlow is a full-stack commercial cleaning operations platform for running the customer journey and the operations journey in one connected product.
 
-The verification exercised the real React/Vite frontend, the real FastAPI backend, and a disposable SQLite database. Frontend actions were traced to actual HTTP requests, backend processing, and database state changes. No mock API responses or fake frontend data were introduced.
+A customer can discover services, request a quote, review quotes, manage contracts, see upcoming service, review invoices and follow their service history. The operations team can manage leads, customers, pricing, quotes, contracts, schedules, jobs, employees, invoices, feedback, analytics, audit history and settings. Field employees get a focused mobile experience for the work assigned to them.
 
-## Connected System Flow
+This walkthrough is written for someone who is simply looking at the product and wants to understand what it does.
 
-`User action → React/Vite interface → FastAPI API → business rules → SQLite database → API response → updated interface`
+## The product at a glance
 
-## Verification Snapshot
+**Customer request → lead → quote → contract → recurring schedule → job → field execution → invoice → payment → customer history**
 
-- Backend automated suite: **71 passed**.
-- Real E2E runner: public pages, authentication, lead handoff, quoting, customer acceptance, contracts, scheduling, calendar, jobs, employee mobile execution, feedback, invoicing, payments, settings, notifications, feature flags, webhooks, exports, PDFs, RBAC, validation, endpoint coverage, CRUD, and idempotency.
-- Database evidence: direct SQLite assertions for the E2E-created lead, service, property, and employee records are produced in `db-evidence.json`.
-- Browser/API evidence: `e2e-report.json` records the actual browser requests, API response statuses, runtime errors, and per-check result.
+The product is connected end to end:
 
-> The generated JSON evidence is authoritative for the final per-check pass/fail state. The walkthrough below is the human-readable presentation of that evidence.
+**User action → React/Vite interface → FastAPI API → business rules + authorization → database → API response → updated interface**
 
-## 1. Public Experience
+The screenshots below are captured from the real CleanFlow application with live application data rather than mock screens.
 
-CleanFlow starts with a complete public marketing surface. The walkthrough covers the main landing page, service categories, pricing, service areas, about/testimonials/gallery content, FAQ, and contact flow before authentication.
+## How the product works
 
-## 2. Authentication and Lead Intake
+```mermaid
+flowchart LR
+  C[Customer] --> P[Customer portal]
+  S[Owner / manager] --> W[Operations workspace]
+  E[Field employee] --> M[Employee mobile]
+  P --> A[FastAPI API]
+  W --> A
+  M --> A
+  A --> R[Business rules + authorization]
+  R --> DB[(Application database)]
+  DB --> R --> A
+  A --> P
+  A --> W
+  A --> M
+```
 
-The invalid login case is exercised first so the walkthrough shows the application's rejection path as well as the normal signed-in path. The public quote form then creates a real Lead through the unauthenticated API. The newly created record is immediately searched through the authenticated staff API, proving the request crossed the public UI → API → database boundary.
+## Public customer experience
 
-## 3. Owner Workspace
+### Home
 
-The owner workspace exposes the operational controls required to run the business. Each main owner route was opened from the live app, including leads, quotes, contracts, calendar, jobs, customers, employees, invoices, feedback, analytics, audit, team accounts, and settings.
+![CleanFlow home](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/01-home.png)
 
-## 4. Lead → Customer → Quote
+CleanFlow starts with a public-facing website that explains the cleaning services, communicates the value of the business and gives customers a clear path into the service request flow.
 
-A real lead was updated to `CONTACTED` and then converted. The customer workspace was used to open the pricing/quote flow. The quote preview was generated from real service/pricing data, persisted as a real Quote, sent, rendered to PDF, cloned, and then accepted from the customer role.
+### Request a quote
 
-## 5. Customer Portal
+![CleanFlow request a quote](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/02-request-quote.png)
 
-The customer role gets a dedicated portal rather than staff navigation. Quotes, contracts, schedule, service history, and invoices were opened under the customer session, while direct access to staff-only routes was rejected.
+The quote request experience turns a visitor into a real business opportunity. The customer provides the information the cleaning team needs to understand the property and the requested service.
 
-## 6. Contracts, Scheduling and Calendar
+## Owner and operations workspace
 
-The accepted quote becomes a real contract. Contract controls include pause/resume and renewal, while the recurring schedule flow supports occurrence overrides and regeneration of future jobs. Calendar month and day views read the same live scheduling data.
+### Sign in and choose a role
 
-## 7. Employee Job Execution
+![CleanFlow login](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/03-login.png)
 
-The employee flow is tested from the employee session. It exercises check-in, before/after proof uploads, required checklist completion, notes, check-out, and final job completion. The resulting job is then read directly from the backend API to confirm the database-backed state transition.
+CleanFlow has separate experiences for the people who operate the business, the people who perform the work and the customers who receive the service.
 
-## 8. Feedback and Billing
+### Dashboard
 
-The completed job flows back to the customer for feedback. The same job then drives invoice creation. The billing flow exercises send, PDF generation, payment recording, and CSV export.
+![CleanFlow dashboard](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/04-dashboard.png)
 
-## 9. Settings, Notifications, Feature Flags and Access Control
+The dashboard is the operational overview of the business. Revenue, active contracts, upcoming jobs, completed work, outstanding invoices, new leads and conversion performance are visible together, while attention items surface work that needs follow-up.
 
-The settings surface was opened under the owner role. Feature flags are toggled and restored through the real API. Notifications are read and the mark-all-read flow is verified. Manager access to owner-only pages and APIs is explicitly rejected.
+### Leads
 
-## 10. Backend Endpoint and Data Coverage
+![CleanFlow leads](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/05-leads.png)
 
-| Capability | UI | API | Database evidence | Status |
-|---|---:|---:|---:|---|
-| Public pages / quote request | Yes | Yes | Lead record | Verified |
-| Authentication / RBAC | Yes | Yes | User records | Verified |
-| Leads / customers | Yes | Yes | Lead/customer/property | Verified |
-| Quotes / pricing | Yes | Yes | Quote data | Verified |
-| Customer portal | Yes | Yes | Customer-scoped data | Verified |
-| Contracts / scheduling | Yes | Yes | Contract/schedule/jobs | Verified |
-| Calendar | Yes | Yes | Job records | Verified |
-| Jobs / employee mobile | Yes | Yes | Job/checklist/photos/notes | Verified |
-| Invoices / payments | Yes | Yes | Invoice/payment | Verified |
-| Feedback / analytics / audit | Yes | Yes | Read-after-write | Verified |
-| Settings / flags / notifications / webhooks | Yes | Yes | Persisted configuration | Verified |
-| Exports / PDFs | Yes | Yes | Generated from persisted data | Verified |
-| Validation / not-found | UI + API | Yes | Rejected requests | Verified |
-| Idempotent payments | API | Yes | Single logical result | Verified |
+The lead workspace gives the team a place to organize incoming opportunities and move prospects toward becoming customers.
 
-## 11. Evidence and Reproducibility
+### Quotes
 
-The E2E runner produces:
+![CleanFlow quotes](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/06-quotes.png)
 
-- `e2e-report.json` — browser/API traffic, runtime errors and per-check results.
-- `db-evidence.json` — direct SQLite tables, row counts and E2E-created record assertions.
-- `pytest.log` — backend automated test suite.
-- `backend-runtime.log` and `frontend-runtime.log` — runtime logs.
+Quotes turn a customer's service requirements into a structured commercial proposal. Pricing, services and customer information stay connected to the rest of the workflow.
 
-The test database is disposable SQLite created from the backend's SQLAlchemy models and real seed data. This is an application verification environment, not a claim that SQLite is the production persistence choice.
+### Contracts
 
-## 12. Issue Found and Fixed
+![CleanFlow contracts](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/07-contracts.png)
 
-During full-stack inspection, the frontend notification bell was calling `POST /api/notifications/mark-all-read`, while the backend function was missing the FastAPI route decorator. The missing decorator was added on the isolated `e2e-test-fixes` branch and the corrected route is exercised by the verification runner.
+Contracts carry the relationship beyond the initial sale. They connect customer agreements to recurring service, scheduling and the operational work that follows.
 
-## 13. Repository Coverage Notes
+### Calendar
 
-The inspection covered the public UI, role-based navigation, dashboard/reporting surfaces, leads, customers, properties, employees, services, checklist templates, pricing, quotes, contracts, scheduling, calendar, jobs, employee mobile execution, feedback, invoices, payments, exports, PDFs, notifications, feature flags, audit logs, webhooks, settings, team accounts, search, validation, not-found behavior, RBAC, and idempotent payment handling.
+![CleanFlow calendar](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/08-calendar.png)
 
-The repository's independent backend suite is green at 71 passing tests, providing a second validation layer in addition to the browser-driven full-stack walkthrough.
+The calendar gives the operations team a visual view of scheduled work so recurring service and upcoming jobs can be managed from one place.
+
+### Jobs
+
+![CleanFlow jobs](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/09-jobs.png)
+
+Jobs are the operational unit of the service. They connect a customer, a property, a schedule and the employee work that has to happen in the field.
+
+### Customers
+
+![CleanFlow customers](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/10-customers.png)
+
+Customer records keep the relationship and service history together so the operations team can quickly understand who the customer is, what services they receive and what work is associated with them.
+
+### Employees
+
+![CleanFlow employees](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/11-employees.png)
+
+Employee management gives the business a central place to organize its workforce and connect people to the operational work they are responsible for.
+
+### Invoices
+
+![CleanFlow invoices](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/12-invoices.png)
+
+Invoices turn completed service into a customer-facing financial record. Billing stays connected to the operational data that produced it.
+
+### Analytics
+
+![CleanFlow analytics](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/13-analytics.png)
+
+Analytics brings the operational picture together so the business can see performance trends instead of relying only on individual records.
+
+## Customer and operations handoff
+
+### A customer request enters the business workflow
+
+![CleanFlow customer request](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/02-request-quote.png)
+
+The customer starts from the public experience and submits the information needed to request service.
+
+### The operations team works the request
+
+![CleanFlow leads workspace](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/05-leads.png)
+
+That customer intent becomes part of the operations workflow, where the team can follow up, qualify the opportunity, prepare a quote and move the customer into the service lifecycle.
+
+The important product flow is:
+
+**Customer screen → API → business workflow → operations screen**
+
+The customer experience and the staff experience are two views over the same connected application.
+
+## Customer portal
+
+### Customer home
+
+![CleanFlow customer portal](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/14-customer-portal.png)
+
+The customer portal gives customers a focused view of their relationship with the cleaning company without exposing the internal operations workspace.
+
+Customers can use the portal to see what is happening with their service, their account and their documents.
+
+### Customer quotes
+
+![CleanFlow customer quotes](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/15-customer-quotes.png)
+
+Quotes can be reviewed from the customer side so the customer experience continues beyond the initial website request and into the commercial decision.
+
+## Field operations
+
+### Employee mobile experience
+
+![CleanFlow employee mobile](https://sb-3zqx0twr3bhd.vercel.run/walkthrough/16-employee-mobile.png)
+
+The field employee experience is designed around the work happening at the property. Employees can focus on the jobs assigned to them and the information needed to complete the service cleanly from a mobile-sized interface.
+
+This is where the office workflow becomes physical service delivery.
+
+## Billing, feedback and operational visibility
+
+Once service is delivered, CleanFlow keeps the rest of the relationship connected:
+
+**Job completed → customer feedback → invoice → payment → customer history**
+
+The operations side also includes audit history, notifications, team accounts, settings and feature controls so the business can manage the system as it grows.
+
+## A real persistence example
+
+One of the clearest product behaviors is that a record created in one part of CleanFlow can be read again from another part of the application.
+
+A customer request can enter through the public experience, become a lead for the operations team, move into quoting and contract management, create scheduled work, produce jobs for employees and eventually appear in billing and the customer's history.
+
+The same principle is used throughout the product:
+
+**Create or change something in the interface → the backend processes it → the application stores it → another screen reads the updated record back**
+
+## Feature map
+
+| Area | What it is for |
+|---|---|
+| Public website | Customer discovery and service information |
+| Quote requests | Turn customer interest into business opportunities |
+| Leads | Track and progress new opportunities |
+| Customers | Central customer relationship records |
+| Properties | Keep service locations organized |
+| Services & pricing | Reusable service definitions and pricing |
+| Quotes | Customer-facing commercial proposals |
+| Contracts | Ongoing service agreements |
+| Scheduling | Recurring and future service planning |
+| Calendar | Visual schedule and job overview |
+| Jobs | Operational service work |
+| Employee mobile | Field execution experience |
+| Checklists & proof | Capture completion details from the field |
+| Invoices | Customer billing |
+| Payments | Track money received |
+| Feedback | Capture the customer's service experience |
+| Analytics | Business and operational visibility |
+| Audit log | Activity history |
+| Notifications | Keep users informed of important activity |
+| Team accounts | Role-based access for staff |
+| Customer portal | Customer-facing service history and documents |
+| Settings & feature controls | Configure and operate the platform |

@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths-ignore:
       - "docs/testing/visuals/**"
+  pull_request:
+    types: [opened, synchronize]
+    paths-ignore:
+      - "docs/testing/visuals/**"
+      - ".github/workflows/build-walkthrough-screenshots.yml"
+      - "scripts/capture-walkthrough.mjs"
 
 permissions:
   contents: write
@@ -72,11 +78,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/testing/visuals
           git commit -m "docs: add complete CleanFlow walkthrough screenshots" || exit 0
-          git push origin HEAD:main
+          git push origin "HEAD:${GITHUB_HEAD_REF:-main}"
 
       - name: Remove the one-time capture workflow
         shell: bash
         run: |
           git rm -f .github/workflows/build-walkthrough-screenshots.yml scripts/capture-walkthrough.mjs
           git commit -m "chore: remove one-time walkthrough capture workflow"
-          git push origin HEAD:main
+          git push origin "HEAD:${GITHUB_HEAD_REF:-main}"

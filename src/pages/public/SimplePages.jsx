@@ -2,12 +2,26 @@ export function CommercialCleaning() {
   return (
     <div style={{ maxWidth: 800, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Commercial Cleaning</h1>
-      <p>CleanFlow's core business: recurring cleaning contracts for offices, medical suites, retail stores,
-        restaurants, and warehouses. Every visit follows a checklist matched to your space and is documented
-        with before/after photos — visible in your own customer portal, not just taken on faith.</p>
+      <p>
+        CleanFlow's core business: recurring cleaning contracts for offices, medical suites, retail
+        stores, restaurants, and warehouses. Every visit follows a checklist matched to your space
+        and is documented with before/after photos — visible in your own customer portal, not just
+        taken on faith.
+      </p>
       <div className="grid grid-2" style={{ marginTop: 20 }}>
-        <div className="card"><h3 style={{ fontSize: 16 }}>Flexible Frequency</h3><p>Daily, weekly, bi-weekly, monthly, or a custom pattern like Mon/Wed/Fri — scheduled around your business hours.</p></div>
-        <div className="card"><h3 style={{ fontSize: 16 }}>Verified Service</h3><p>Checklist completion and photo proof are required before a visit can be marked done.</p></div>
+        <div className="card">
+          <h3 style={{ fontSize: 16 }}>Flexible Frequency</h3>
+          <p>
+            Daily, weekly, bi-weekly, monthly, or a custom pattern like Mon/Wed/Fri — scheduled
+            around your business hours.
+          </p>
+        </div>
+        <div className="card">
+          <h3 style={{ fontSize: 16 }}>Verified Service</h3>
+          <p>
+            Checklist completion and photo proof are required before a visit can be marked done.
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -17,8 +31,11 @@ export function ResidentialCleaning() {
   return (
     <div style={{ maxWidth: 800, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Residential Cleaning</h1>
-      <p>While CleanFlow's focus is commercial accounts, we also support one-time and recurring residential
-        cleaning on request — the same transparent quoting and proof-of-service standard applies.</p>
+      <p>
+        While CleanFlow's focus is commercial accounts, we also support one-time and recurring
+        residential cleaning on request — the same transparent quoting and proof-of-service standard
+        applies.
+      </p>
     </div>
   );
 }
@@ -27,15 +44,32 @@ export function Services() {
   return (
     <div style={{ maxWidth: 900, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Services</h1>
-      <p>CleanFlow provides recurring and one-time commercial cleaning tailored to your industry.</p>
+      <p>
+        CleanFlow provides recurring and one-time commercial cleaning tailored to your industry.
+      </p>
       <div className="grid grid-2" style={{ marginTop: 24 }}>
         {[
-          ['Standard Commercial Cleaning', 'Trash removal, vacuuming, mopping, restrooms, and common areas — the recurring core of most contracts.'],
-          ['Medical-Grade Cleaning', 'Enhanced disinfection protocols for medical and dental offices, with documented compliance per visit.'],
-          ['Deep Clean', 'A one-time intensive clean — ideal before a move-in, after construction, or for a seasonal reset.'],
-          ['Add-on Services', 'Interior windows, carpet shampooing, and kitchen/refrigerator deep cleans, added to any visit.'],
+          [
+            'Standard Commercial Cleaning',
+            'Trash removal, vacuuming, mopping, restrooms, and common areas — the recurring core of most contracts.',
+          ],
+          [
+            'Medical-Grade Cleaning',
+            'Enhanced disinfection protocols for medical and dental offices, with documented compliance per visit.',
+          ],
+          [
+            'Deep Clean',
+            'A one-time intensive clean — ideal before a move-in, after construction, or for a seasonal reset.',
+          ],
+          [
+            'Add-on Services',
+            'Interior windows, carpet shampooing, and kitchen/refrigerator deep cleans, added to any visit.',
+          ],
         ].map(([t, d]) => (
-          <div className="card" key={t}><h3>{t}</h3><p>{d}</p></div>
+          <div className="card" key={t}>
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -46,20 +80,29 @@ export function CommercialResidential() {
   return (
     <div style={{ maxWidth: 900, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Commercial & Residential Cleaning</h1>
-      <p>We primarily serve commercial clients — offices, medical suites, retail, restaurants, and warehouses —
-        with recurring contracts. We also support one-time and recurring residential cleaning on request.</p>
+      <p>
+        We primarily serve commercial clients — offices, medical suites, retail, restaurants, and
+        warehouses — with recurring contracts. We also support one-time and recurring residential
+        cleaning on request.
+      </p>
     </div>
   );
 }
 
 export function Pricing() {
   return (
-    <div style={{ maxWidth: 700, margin: '50px auto', padding: '0 20px 60px', textAlign: 'center' }}>
+    <div
+      style={{ maxWidth: 700, margin: '50px auto', padding: '0 20px 60px', textAlign: 'center' }}
+    >
       <h1>Pricing</h1>
-      <p>Every CleanFlow quote is generated by our Smart Quote Engine from your property's actual specs —
-        square footage, bathrooms, floors, and how often you want us there — so pricing is transparent and
-        consistent, not guessed.</p>
-      <a href="/request-quote" className="btn btn-primary">Get Your Estimate</a>
+      <p>
+        Every CleanFlow quote is generated by our Smart Quote Engine from your property's actual
+        specs — square footage, bathrooms, floors, and how often you want us there — so pricing is
+        transparent and consistent, not guessed.
+      </p>
+      <a href="/request-quote" className="btn btn-primary">
+        Get Your Estimate
+      </a>
     </div>
   );
 }
@@ -68,8 +111,10 @@ export function ServiceAreas() {
   return (
     <div style={{ maxWidth: 700, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Service Areas</h1>
-      <p>CleanFlow currently serves the greater Austin, TX metro area, including Downtown, East Austin,
-        the Domain, and surrounding business districts. Ask us about coverage near you.</p>
+      <p>
+        CleanFlow currently serves the greater Austin, TX metro area, including Downtown, East
+        Austin, the Domain, and surrounding business districts. Ask us about coverage near you.
+      </p>
     </div>
   );
 }
@@ -78,10 +123,12 @@ export function About() {
   return (
     <div style={{ maxWidth: 700, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>About CleanFlow</h1>
-      <p>CleanFlow Commercial Cleaning Co. was built on a simple idea: cleaning businesses shouldn't run on
-        spreadsheets, group texts, and paper checklists. Every job we do is scheduled, assigned, documented
-        with photos, and checked off against a real checklist — so our clients never have to wonder whether
-        the work got done.</p>
+      <p>
+        CleanFlow Commercial Cleaning Co. was built on a simple idea: cleaning businesses shouldn't
+        run on spreadsheets, group texts, and paper checklists. Every job we do is scheduled,
+        assigned, documented with photos, and checked off against a real checklist — so our clients
+        never have to wonder whether the work got done.
+      </p>
     </div>
   );
 }
@@ -92,13 +139,26 @@ export function Testimonials() {
       <h1>Testimonials</h1>
       <div className="grid grid-2" style={{ marginTop: 20 }}>
         {[
-          ['Morgan Ellis', 'Ellis & Co. Consulting', 'Great job, office looked spotless every week — and I love that I can see photos of every visit.'],
-          ['Dana Kim', 'Riverside Dental', 'The medical-grade checklist gives us real peace of mind for compliance.'],
-          ['Casey Morgan', 'Northgate Realty', 'Billing is finally simple — invoices match exactly what was done.'],
+          [
+            'Morgan Ellis',
+            'Ellis & Co. Consulting',
+            'Great job, office looked spotless every week — and I love that I can see photos of every visit.',
+          ],
+          [
+            'Dana Kim',
+            'Riverside Dental',
+            'The medical-grade checklist gives us real peace of mind for compliance.',
+          ],
+          [
+            'Casey Morgan',
+            'Northgate Realty',
+            'Billing is finally simple — invoices match exactly what was done.',
+          ],
         ].map(([name, co, quote]) => (
           <div className="card" key={name}>
             <p style={{ fontStyle: 'italic' }}>&ldquo;{quote}&rdquo;</p>
-            <strong>{name}</strong><div className="text-muted">{co}</div>
+            <strong>{name}</strong>
+            <div className="text-muted">{co}</div>
           </div>
         ))}
       </div>
@@ -110,24 +170,41 @@ export function Gallery() {
   return (
     <div style={{ maxWidth: 900, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Before / After</h1>
-      <p>Every completed job in CleanFlow includes real before-and-after photo proof, viewable by the customer
-        in their portal. (Sample photos appear inside the demo account's service history.)</p>
+      <p>
+        Every completed job in CleanFlow includes real before-and-after photo proof, viewable by the
+        customer in their portal. (Sample photos appear inside the demo account's service history.)
+      </p>
     </div>
   );
 }
 
 export function FAQ() {
   const items = [
-    ['How is pricing calculated?', 'Our Smart Quote Engine combines your property\'s square footage, bathroom count, floors, and cleaning frequency with configurable rates — and shows you the full breakdown.'],
-    ['Can I change my schedule?', 'Yes — contact your account manager, or request a one-off reschedule for a specific date without affecting your regular recurring schedule.'],
-    ['How do I know the job was done?', 'Every job requires a completed checklist and before/after photos before it can be marked complete — visible in your customer portal.'],
-    ['How do I pay my invoice?', 'Invoices are available in your customer portal along with payment history. Contact us to arrange payment.'],
+    [
+      'How is pricing calculated?',
+      "Our Smart Quote Engine combines your property's square footage, bathroom count, floors, and cleaning frequency with configurable rates — and shows you the full breakdown.",
+    ],
+    [
+      'Can I change my schedule?',
+      'Yes — contact your account manager, or request a one-off reschedule for a specific date without affecting your regular recurring schedule.',
+    ],
+    [
+      'How do I know the job was done?',
+      'Every job requires a completed checklist and before/after photos before it can be marked complete — visible in your customer portal.',
+    ],
+    [
+      'How do I pay my invoice?',
+      'Invoices are available in your customer portal along with payment history. Contact us to arrange payment.',
+    ],
   ];
   return (
     <div style={{ maxWidth: 700, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Frequently Asked Questions</h1>
       {items.map(([q, a]) => (
-        <div className="card" style={{ marginBottom: 12 }} key={q}><h3 style={{ fontSize: 16 }}>{q}</h3><p style={{ margin: 0 }}>{a}</p></div>
+        <div className="card" style={{ marginBottom: 12 }} key={q}>
+          <h3 style={{ fontSize: 16 }}>{q}</h3>
+          <p style={{ margin: 0 }}>{a}</p>
+        </div>
       ))}
     </div>
   );
@@ -138,10 +215,18 @@ export function Contact() {
     <div style={{ maxWidth: 600, margin: '50px auto', padding: '0 20px 60px' }}>
       <h1>Contact Us</h1>
       <div className="card">
-        <p><strong>Phone:</strong> (555) 010-2020</p>
-        <p><strong>Email:</strong> hello@cleanflowdemo.com</p>
-        <p><strong>Address:</strong> 500 Industrial Pkwy, Suite 200, Austin, TX 78701</p>
-        <p><strong>Hours:</strong> Mon–Fri, 7:00 AM – 6:00 PM</p>
+        <p>
+          <strong>Phone:</strong> (555) 010-2020
+        </p>
+        <p>
+          <strong>Email:</strong> hello@cleanflowdemo.com
+        </p>
+        <p>
+          <strong>Address:</strong> 500 Industrial Pkwy, Suite 200, Austin, TX 78701
+        </p>
+        <p>
+          <strong>Hours:</strong> Mon–Fri, 7:00 AM – 6:00 PM
+        </p>
       </div>
     </div>
   );

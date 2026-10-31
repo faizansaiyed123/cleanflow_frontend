@@ -5,7 +5,10 @@ export function money(n) {
 
 export function dateFmt(d, opts) {
   if (!d) return '—';
-  return new Date(d).toLocaleDateString('en-US', opts || { month: 'short', day: 'numeric', year: 'numeric' });
+  return new Date(d).toLocaleDateString(
+    'en-US',
+    opts || { month: 'short', day: 'numeric', year: 'numeric' }
+  );
 }
 
 export function timeFmt(d) {

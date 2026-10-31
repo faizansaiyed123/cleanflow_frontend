@@ -13,8 +13,11 @@ export default function CustomerHistory() {
   const [comment, setComment] = useState('');
   const toast = useToast();
 
-  const load = () => api.get('/api/jobs', { status: 'COMPLETED', page_size: 100 }).then((d) => setJobs(d.items));
-  useEffect(() => { load(); }, []);
+  const load = () =>
+    api.get('/api/jobs', { status: 'COMPLETED', page_size: 100 }).then((d) => setJobs(d.items));
+  useEffect(() => {
+    load();
+  }, []);
 
   const openReport = async (jobSummary) => {
     const full = await api.get(`/api/jobs/${jobSummary.id}`);
@@ -28,32 +31,57 @@ export default function CustomerHistory() {
       await api.post(`/api/jobs/${selected.id}/feedback`, { rating, comment });
       toast.push('Thanks for your feedback!', 'success');
       setSelected(null);
-    } catch (err) { toast.push(err.message, 'error'); }
+    } catch (err) {
+      toast.push(err.message, 'error');
+    }
   };
 
   return (
     <div>
       <h1 style={{ marginBottom: 16 }}>Service History</h1>
-      {jobs === null ? <div>Loading…</div> : jobs.length === 0 ? <EmptyState title="No completed services yet" /> : (
+      {jobs === null ? (
+        <div>Loading…</div>
+      ) : jobs.length === 0 ? (
+        <EmptyState title="No completed services yet" />
+      ) : (
         <div className="grid grid-2">
           {jobs.map((j) => (
-            <div key={j.id} className="card card-hover" style={{ cursor: 'pointer' }} onClick={() => openReport(j)}>
+            <div
+              key={j.id}
+              className="card card-hover"
+              style={{ cursor: 'pointer' }}
+              onClick={() => openReport(j)}
+            >
               <strong className="mono">{j.reference_number}</strong>
-              <div className="text-muted" style={{ fontSize: 13 }}>{dateTimeFmt(j.scheduled_start)}</div>
-              <div className="text-muted" style={{ fontSize: 13 }}>{j.property_label}</div>
+              <div className="text-muted" style={{ fontSize: 13 }}>
+                {dateTimeFmt(j.scheduled_start)}
+              </div>
+              <div className="text-muted" style={{ fontSize: 13 }}>
+                {j.property_label}
+              </div>
             </div>
           ))}
         </div>
       )}
 
       {selected && (
-        <Modal title={`Service Report — ${selected.reference_number}`} onClose={() => setSelected(null)}>
-          <p><strong>Completed:</strong> {dateTimeFmt(selected.completed_at)}</p>
-          <p><strong>Employee(s):</strong> {selected.assignments.map((a) => a.employee_name).join(', ') || '—'}</p>
+        <Modal
+          title={`Service Report — ${selected.reference_number}`}
+          onClose={() => setSelected(null)}
+        >
+          <p>
+            <strong>Completed:</strong> {dateTimeFmt(selected.completed_at)}
+          </p>
+          <p>
+            <strong>Employee(s):</strong>{' '}
+            {selected.assignments.map((a) => a.employee_name).join(', ') || '—'}
+          </p>
           <div style={{ margin: '12px 0' }}>
             <strong>Checklist</strong>
             {selected.checklist_items.map((i) => (
-              <div key={i.id} style={{ fontSize: 13.5 }}>{i.is_completed ? '✅' : '⬜'} {i.label}</div>
+              <div key={i.id} style={{ fontSize: 13.5 }}>
+                {i.is_completed ? '✅' : '⬜'} {i.label}
+              </div>
             ))}
           </div>
           {selected.photos.length > 0 && (
@@ -62,9 +90,20 @@ export default function CustomerHistory() {
               <div style={{ display: 'flex', gap: 8, marginTop: 6, flexWrap: 'wrap' }}>
                 {selected.photos.map((p) => (
                   <div key={p.id} style={{ textAlign: 'center' }}>
-                    <img src={`${BASE_URL}/api/files/job-photos/${p.id}`} alt={p.photo_type}
-                      style={{ width: 110, height: 82, objectFit: 'cover', borderRadius: 6, border: '1px solid var(--line)' }}
-                      onError={(e) => { e.target.style.opacity = 0.3; }} />
+                    <img
+                      src={`${BASE_URL}/api/files/job-photos/${p.id}`}
+                      alt={p.photo_type}
+                      style={{
+                        width: 110,
+                        height: 82,
+                        objectFit: 'cover',
+                        borderRadius: 6,
+                        border: '1px solid var(--line)',
+                      }}
+                      onError={(e) => {
+                        e.target.style.opacity = 0.3;
+                      }}
+                    />
                     <div style={{ fontSize: 11 }}>{p.photo_type}</div>
                   </div>
                 ))}
@@ -75,11 +114,29 @@ export default function CustomerHistory() {
             <strong>Leave feedback</strong>
             <div style={{ margin: '8px 0' }}>
               {[1, 2, 3, 4, 5].map((n) => (
-                <span key={n} style={{ cursor: 'pointer', fontSize: 22, color: n <= rating ? '#b6902c' : '#ddd' }} onClick={() => setRating(n)}>★</span>
+                <span
+                  key={n}
+                  style={{
+                    cursor: 'pointer',
+                    fontSize: 22,
+                    color: n <= rating ? '#b6902c' : '#ddd',
+                  }}
+                  onClick={() => setRating(n)}
+                >
+                  ★
+                </span>
               ))}
             </div>
-            <textarea rows="2" placeholder="Optional comment…" value={comment} onChange={(e) => setComment(e.target.value)} style={{ marginBottom: 8 }} />
-            <button className="btn btn-primary" onClick={submitFeedback}>Submit Feedback</button>
+            <textarea
+              rows="2"
+              placeholder="Optional comment…"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              style={{ marginBottom: 8 }}
+            />
+            <button className="btn btn-primary" onClick={submitFeedback}>
+              Submit Feedback
+            </button>
           </div>
         </Modal>
       )}

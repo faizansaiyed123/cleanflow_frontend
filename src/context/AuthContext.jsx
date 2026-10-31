@@ -9,7 +9,10 @@ export function AuthProvider({ children }) {
 
   const loadMe = useCallback(async () => {
     const token = localStorage.getItem('cleanflow_token');
-    if (!token) { setLoading(false); return; }
+    if (!token) {
+      setLoading(false);
+      return;
+    }
     try {
       const me = await api.get('/api/auth/me');
       setUser(me);
@@ -21,7 +24,9 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  useEffect(() => { loadMe(); }, [loadMe]);
+  useEffect(() => {
+    loadMe();
+  }, [loadMe]);
 
   const login = async (email, password) => {
     const resp = await api.post('/api/auth/login', { email, password });

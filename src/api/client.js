@@ -11,7 +11,10 @@ function getToken() {
   return localStorage.getItem('cleanflow_token');
 }
 
-async function request(path, { method = 'GET', body, params, isForm = false, idempotencyKey } = {}) {
+async function request(
+  path,
+  { method = 'GET', body, params, isForm = false, idempotencyKey } = {}
+) {
   let url = `${BASE_URL}${path}`;
   if (params) {
     const qs = new URLSearchParams(
@@ -37,12 +40,19 @@ async function request(path, { method = 'GET', body, params, isForm = false, ide
   let data = null;
   const text = await resp.text();
   if (text) {
-    try { data = JSON.parse(text); } catch { data = text; }
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = text;
+    }
   }
 
   if (!resp.ok) {
     const message = (data && data.detail) || resp.statusText || 'Request failed';
-    throw new ApiError(typeof message === 'string' ? message : JSON.stringify(message), resp.status);
+    throw new ApiError(
+      typeof message === 'string' ? message : JSON.stringify(message),
+      resp.status
+    );
   }
   return data;
 }

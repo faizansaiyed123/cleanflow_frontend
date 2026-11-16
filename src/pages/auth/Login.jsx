@@ -59,7 +59,8 @@ export default function Login() {
           >
             CleanFlow
           </Link>
-          <p style={{ marginTop: 4 }}>Sign in to your operations dashboard</p>
+          <p style={{ marginTop: 4 }}>Explore the interactive CleanFlow demo</p>
+          <p className="text-muted" style={{ fontSize: 12.5 }}>Browser-only simulation · No backend required · Changes stay on this device</p>
         </div>
         <form className="card" onSubmit={handleSubmit}>
           <div className="field">

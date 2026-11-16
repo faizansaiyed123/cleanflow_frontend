@@ -1,3 +1,5 @@
+import { DEMO_MODE, demoRequest, demoDownload, demoOpenInNewTab } from '../demo/demoApi';
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 class ApiError extends Error {
@@ -15,6 +17,8 @@ async function request(
   path,
   { method = 'GET', body, params, isForm = false, idempotencyKey } = {}
 ) {
+  if (DEMO_MODE) return demoRequest(path, { method, body, params });
+
   let url = `${BASE_URL}${path}`;
   if (params) {
     const qs = new URLSearchParams(
@@ -65,6 +69,7 @@ export const api = {
   del: (path) => request(path, { method: 'DELETE' }),
   postForm: (path, formData) => request(path, { method: 'POST', body: formData, isForm: true }),
   download: async (path, filename) => {
+    if (DEMO_MODE) return demoDownload(path, filename);
     const token = getToken();
     const headers = {};
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -81,6 +86,7 @@ export const api = {
     URL.revokeObjectURL(url);
   },
   openInNewTab: async (path) => {
+    if (DEMO_MODE) return demoOpenInNewTab(path);
     const token = getToken();
     const headers = {};
     if (token) headers['Authorization'] = `Bearer ${token}`;

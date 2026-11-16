@@ -1,5 +1,5 @@
 // Browser-only CleanFlow demo API. All writes stay in this browser's localStorage.
-export const DEMO_MODE = true;
+export const DEMO_MODE = import.meta.env.VITE_CLEANFLOW_BROWSER_DEMO !== 'false';
 export const DEMO_PASSWORD = 'Demo1234!';
 export const DEMO_PHOTO_PLACEHOLDER = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320"><rect width="480" height="320" fill="#e7eee8"/><path d="M0 250L125 145l78 65 91-108 186 148v70H0z" fill="#b8cbbd"/><circle cx="350" cy="88" r="30" fill="#d7c58e"/><text x="240" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#385846">CleanFlow sample proof photo</text></svg>')}`;
 const STORAGE_KEY = 'cleanflow_demo_state_v1';

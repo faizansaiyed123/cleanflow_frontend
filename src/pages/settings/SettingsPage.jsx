@@ -361,21 +361,27 @@ function FeatureFlagsPanel() {
   );
 }
 
-function SystemHealthPanel() {
+function SystemHealthPanel({ isDemo }) {
   const [ready, setReady] = useState(null);
   useEffect(() => {
+    if (isDemo) {
+      setReady({ status: 'local-demo' });
+      return;
+    }
     fetch(`${BASE_URL}/api/health/ready`)
       .then((r) => r.json())
       .then(setReady)
       .catch(() => setReady({ status: 'unknown' }));
-  }, []);
+  }, [isDemo]);
   return (
     <div className="card" style={{ marginBottom: 20 }}>
       <h3 style={{ fontSize: 15 }}>System Health</h3>
       <p style={{ fontSize: 13 }}>
         Database:{' '}
         {ready ? (
-          ready.status === 'ready' ? (
+          ready.status === 'local-demo' ? (
+            <span className="badge badge-green">LOCAL DEMO</span>
+          ) : ready.status === 'ready' ? (
             <span className="badge badge-green">OK</span>
           ) : (
             <span className="badge badge-red">DOWN</span>
@@ -387,7 +393,7 @@ function SystemHealthPanel() {
       <p className="text-muted" style={{ fontSize: 12 }}>
         Background worker runs the outbox drain, webhook delivery, recurring job generation,
         overdue/expiry sweeps, analytics rollup, and search index refresh on independent schedules.
-        Metrics are exposed in Prometheus format at <code>/metrics</code>.
+        {isDemo ? 'This browser-only demo does not start or probe a backend service or background worker.' : <>Metrics are exposed in Prometheus format at <code>/metrics</code>.</>}
       </p>
     </div>
   );
@@ -398,7 +404,7 @@ export default function SettingsPage() {
   const [rules, setRules] = useState([]);
   const [selectedType, setSelectedType] = useState('OFFICE');
   const [dirty, setDirty] = useState(false);
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const toast = useToast();
   const isOwner = user.role === 'OWNER';
 
@@ -480,7 +486,7 @@ export default function SettingsPage() {
     <div>
       <h1 style={{ marginBottom: 20 }}>Settings</h1>
 
-      {isOwner && <SystemHealthPanel />}
+      {isOwner && <SystemHealthPanel isDemo={isDemo} />}
       {isOwner && <WebhooksPanel />}
       {isOwner && <FeatureFlagsPanel />}
 

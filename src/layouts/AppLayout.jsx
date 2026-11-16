@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../api/client';
 import NotificationBell from '../components/NotificationBell';
+import { resetDemoData } from '../demo/demoApi';
 
 const NAV_BY_ROLE = {
   OWNER: [
@@ -45,7 +46,7 @@ const NAV_BY_ROLE = {
 };
 
 export default function AppLayout() {
-  const { user, logout } = useAuth();
+  const { user, logout, isDemo } = useAuth();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -175,6 +176,12 @@ export default function AppLayout() {
         </div>
       </aside>
       <main style={{ flex: 1, minWidth: 0 }}>
+        {isDemo && (
+          <div style={{ padding: '10px 20px', background: '#fff4d6', borderBottom: '1px solid #ead8a4', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', fontSize: 13, color: '#5d4a18' }}>
+            <span><strong>Interactive demo</strong> · Browser-local sample data · No backend, emails, payments, or webhook deliveries are used</span>
+            <button className="btn btn-secondary btn-sm" onClick={() => { resetDemoData(); window.location.reload(); }}>Reset sample data</button>
+          </div>
+        )}
         {user.role !== 'EMPLOYEE' && (
           <header
             style={{

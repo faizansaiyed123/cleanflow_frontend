@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api/client';
-import { BASE_URL, DEMO_MODE } from '../../api/client';
-import { DEMO_PHOTO_PLACEHOLDER } from '../../demo/demoApi';
+import { BASE_URL } from '../../api/client';
+import { DEMO_MODE, DEMO_PHOTO_PLACEHOLDER } from '../../demo/demoApi';
 import EmptyState from '../../components/EmptyState';
 import Modal from '../../components/Modal';
 import { useToast } from '../../context/ToastContext';

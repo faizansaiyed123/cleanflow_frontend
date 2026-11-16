@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api, BASE_URL } from '../api/client';
 import { relativeTime } from '../utils/format';
+import { DEMO_MODE } from '../demo/demoApi';
 
 const ENTITY_ROUTE = {
   Lead: '/app/leads',
@@ -32,6 +33,11 @@ export default function NotificationBell() {
   // reconnect (EventSource auto-reconnects, but belt-and-suspenders).
   useEffect(() => {
     let cancelled = false;
+
+    if (DEMO_MODE) {
+      loadCount();
+      return () => { cancelled = true; };
+    }
 
     async function connect() {
       try {

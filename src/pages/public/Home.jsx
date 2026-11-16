@@ -42,6 +42,9 @@ export default function Home() {
             <Link to="/services" className="btn btn-secondary">
               See Our Services
             </Link>
+            <Link to="/login" className="btn btn-ghost">
+              Explore Interactive Demo
+            </Link>
           </div>
         </div>
       </section>

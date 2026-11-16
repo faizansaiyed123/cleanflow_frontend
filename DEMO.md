@@ -40,7 +40,7 @@ All accounts use password `Demo1234!`.
 
 ## Optional backend project
 
-The companion backend repository has a separate `demo` branch and `demo.py` runner for local API exploration. The frontend demo does not need it. The backend runner uses an isolated disposable SQLite database under its own `.demo/` directory, disables the background worker, and binds only to `127.0.0.1`. See that repository's `DEMO.md` before starting it.
+The companion backend repository has a separate `demo` branch and `demo.py` runner for local API exploration. The frontend demo does not need it. To connect the frontend to this local API instead of its default browser simulator, create a frontend `.env.local` file with `VITE_CLEANFLOW_BROWSER_DEMO=false` and `VITE_API_BASE_URL=http://127.0.0.1:8000`, then restart Vite. The seeded API account credentials in this document are the same. The backend runner uses an isolated disposable SQLite database under its own `.demo/` directory, disables the background worker, and binds only to `127.0.0.1`. See that repository's `DEMO.md` before starting it. The browser-local default remains the recommended zero-backend recruiter path.
 
 ## Checks
 

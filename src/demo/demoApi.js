@@ -751,8 +751,15 @@ export async function demoRequest(path, { method = 'GET', body, params = {} } = 
     return { average_rating: recent.length ? money(recent.reduce((s, f) => s + f.rating, 0) / recent.length) : null, review_count: recent.length, response_rate_percent: 82, recent };
   }
   if (method === 'GET' && path === '/api/analytics') return {
-    revenue: { total: 7810, trend: [] }, jobs: { total: state.jobs.length, completed: state.jobs.filter((j) => j.status === 'COMPLETED').length },
-    leads: { total: state.leads.length, converted: state.leads.filter((l) => l.converted_customer_id).length }, customers: { total: state.customers.length },
+    revenue: 7810,
+    jobs_completed: state.jobs.filter((j) => j.status === 'COMPLETED').length,
+    jobs_cancelled_or_no_show: state.jobs.filter((j) => ['CANCELLED', 'NO_SHOW'].includes(j.status)).length,
+    new_leads: state.leads.filter((l) => l.status === 'NEW').length,
+    quote_conversion_rate_percent: 67,
+    new_contracts: state.contracts.length,
+    average_job_duration_minutes: 86,
+    average_rating: state.feedback.length ? money(state.feedback.reduce((sum, item) => sum + item.rating, 0) / state.feedback.length) : null,
+    employee_workload: Object.fromEntries(state.employees.map((employee) => [employee.full_name, state.jobs.filter((job) => job.assignments.some((a) => a.employee_id === employee.id) && job.status !== 'COMPLETED').length])),
   };
   if (method === 'GET' && path === '/api/audit-logs') {
     const items = state.audit.filter((entry) => !q || entry.action.toLowerCase().includes(q));
@@ -771,6 +778,7 @@ export async function demoRequest(path, { method = 'GET', body, params = {} } = 
     return list.filter((item) => item.label.toLowerCase().includes(q)).slice(0, 10);
   }
 
+  if (method === 'GET' && path === '/api/notifications/unread-count') return { count: state.notifications.filter((n) => !n.is_read).length };
   if (method === 'GET' && path === '/api/notifications') return clone(state.notifications);
   if (method === 'GET' && path === '/api/notifications/stream-ticket') return { ticket: 'local-demo', simulated: true };
   if (method === 'POST' && path === '/api/notifications/mark-all-read') { state.notifications.forEach((n) => { n.is_read = true; }); return write({ success: true }); }

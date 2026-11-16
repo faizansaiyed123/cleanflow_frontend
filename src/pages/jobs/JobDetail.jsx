@@ -6,6 +6,7 @@ import StatusBadge from '../../components/StatusBadge';
 import Modal from '../../components/Modal';
 import { dateTimeFmt } from '../../utils/format';
 import { BASE_URL as API_BASE } from '../../api/client';
+import { DEMO_MODE, DEMO_PHOTO_PLACEHOLDER } from '../../demo/demoApi';
 import ConfirmDialog from '../../components/ConfirmDialog';
 
 export default function JobDetail() {
@@ -193,7 +194,7 @@ export default function JobDetail() {
             {job.photos.map((p) => (
               <div key={p.id} style={{ textAlign: 'center' }}>
                 <img
-                  src={`${API_BASE}/api/files/job-photos/${p.id}`}
+                  src={DEMO_MODE ? DEMO_PHOTO_PLACEHOLDER : `${API_BASE}/api/files/job-photos/${p.id}`}
                   alt={p.photo_type}
                   style={{
                     width: 120,
